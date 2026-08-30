@@ -1,0 +1,42 @@
+[project]
+name = "bike-sharing-platform"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Gabriel Pires",email = "gabrielhpires@gmail.com"}
+]
+license-files = ["LICENSE"]
+
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "django (>=6.1,<7.0)",
+    "djangorestframework (>=3.18.0,<4.0.0)",
+    "psycopg2-binary (>=2.9.12,<3.0.0)",
+    "psycopg[pool] (>=3.3.4,<4.0.0)",
+    "python-decouple (>=3.8,<4.0)",
+    "drf-spectacular (>=0.30.0,<0.31.0)",
+    "argon2-cffi (>=25.1.0,<26.0.0)",
+]
+
+[dependency-groups]
+dev = [
+    "django-stubs (>=6.1.0,<7.0.0)",
+    "pre-commit (>=4.6.2,<5.0.0)",
+    "ruff (>=0.16.5,<0.17.0)",
+    "ty (>=0.0.75,<0.0.76)",
+]
+
+[tool.poetry]
+package-mode = false
+
+[tool.ruff]
+line-length = 110
+target-version = "py314"
+extend-exclude = ["migrations"]
+
+[tool.ruff.lint]
+extend-select = ["F", "I", "N", "E"]
+
+[tool.ruff.lint.per-file-ignores]
+"*" = ["RUF012", "F403", "F405"]

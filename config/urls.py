@@ -18,11 +18,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
+    # API Documentation endpoints
+    path("", SpectacularSwaggerView.as_view(), name="docs"),
     path("schema/", SpectacularAPIView.as_view(), name="schema"),
     path("redoc/", SpectacularRedocView.as_view(url_name="schema"), name="redoc"),
+    # Authentication endpoints
+    path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
+    path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
+    # Application endpoints
     path("admin/", admin.site.urls),
     path("users/", include("apps.users.urls", namespace="users")),
-    path("", SpectacularSwaggerView.as_view(), name="docs"),
 ]

@@ -31,4 +31,5 @@ urlpatterns = [
     # Application endpoints
     path("admin/", admin.site.urls),
     path("users/", include("apps.users.urls", namespace="users")),
+    path("trips/", include("apps.trips.urls", namespace="trips")),
 ]

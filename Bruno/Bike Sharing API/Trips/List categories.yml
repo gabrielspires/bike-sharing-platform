@@ -1,13 +1,13 @@
 info:
-  name: List users
+  name: List categories
   type: http
-  seq: 1
+  seq: 2
   tags:
-    - Users
+    - Trips
 
 http:
   method: GET
-  url: "{{baseUrl}}/users/"
+  url: "{{baseUrl}}/trips/categories/"
   params:
     - name: page
       value: ""
@@ -28,7 +28,7 @@ settings:
 examples:
   - name: 200 Response
     request:
-      url: "{{baseUrl}}/users/"
+      url: "{{baseUrl}}/trips/categories/"
       method: GET
       params:
         - name: page
@@ -51,13 +51,15 @@ examples:
             "previous": "http://api.example.org/accounts/?page=2",
             "results": [
               {
-                "first_name": "",
-                "last_name": "",
-                "email": "",
+                "id": "",
+                "user": "",
+                "category": "",
                 "created_at": "",
-                "updated_at": ""
+                "updated_at": "",
+                "finished_at": "",
+                "score": 0
               }
             ]
           }
 
-docs: Returns all users.
+docs: Returns all categories.

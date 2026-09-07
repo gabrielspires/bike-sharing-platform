@@ -23,7 +23,7 @@ runtime:
       code: |-
         if (res.status === 200 && res.body) {
           if (res.body.access) {
-            bru.setEnvVar("accessToken", res.body.access);
+            bru.setEnvVar("token", res.body.access);
           }
           if (res.body.refresh) {
             bru.setEnvVar("refreshToken", res.body.refresh);

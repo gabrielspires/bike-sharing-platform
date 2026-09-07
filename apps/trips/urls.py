@@ -1,0 +1,10 @@
+from django.urls import path
+
+from . import views
+
+app_name = "trips"
+
+urlpatterns = [
+    path("", views.TripList.as_view(), name="trip_list"),
+    path("categories/", views.CategoryList.as_view(), name="category_list"),
+]

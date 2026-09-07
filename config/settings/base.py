@@ -49,7 +49,9 @@ INSTALLED_APPS = [
     "drf_spectacular",
     "rest_framework_simplejwt",
     # Local apps
+    "core",
     "apps.users.apps.UsersConfig",
+    "apps.trips.apps.TripsConfig",
 ]
 
 MIDDLEWARE = [

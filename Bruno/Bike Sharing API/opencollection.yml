@@ -1,0 +1,28 @@
+opencollection: 1.0.0
+
+info:
+  name: Bike Sharing API
+config:
+  proxy:
+    inherit: true
+    config:
+      protocol: http
+      hostname: ""
+      port: ""
+      auth:
+        username: ""
+        password: ""
+      bypassProxy: ""
+bundled: false
+extensions:
+  bruno:
+    ignore:
+      - node_modules
+      - .git
+    openapi:
+      - sourceUrl: http://127.0.0.1:8000/schema/
+        groupBy: tags
+        lastSyncDate: 2026-09-07T18:45:55.292Z
+        specHash: 959e078a7b789ea10ee48127a41c3eaf
+        autoCheck: true
+        autoCheckInterval: 5

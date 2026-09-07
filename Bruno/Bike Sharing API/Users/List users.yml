@@ -1,0 +1,63 @@
+info:
+  name: List users
+  type: http
+  seq: 1
+  tags:
+    - Users
+
+http:
+  method: GET
+  url: "{{baseUrl}}/users/"
+  params:
+    - name: page
+      value: ""
+      type: query
+      description: A page number within the paginated result set.
+      disabled: true
+  auth:
+    type: bearer
+    token: "{{accessToken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: 200 Response
+    request:
+      url: "{{baseUrl}}/users/"
+      method: GET
+      params:
+        - name: page
+          value: ""
+          type: query
+          description: A page number within the paginated result set.
+          disabled: true
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "count": 123,
+            "next": "http://api.example.org/accounts/?page=4",
+            "previous": "http://api.example.org/accounts/?page=2",
+            "results": [
+              {
+                "first_name": "",
+                "last_name": "",
+                "email": "",
+                "created_at": "",
+                "updated_at": ""
+              }
+            ]
+          }
+
+docs: Returns all users.

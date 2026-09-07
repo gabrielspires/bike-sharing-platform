@@ -1,0 +1,72 @@
+info:
+  name: api_token_create
+  type: http
+  seq: 1
+  tags:
+    - api
+
+http:
+  method: POST
+  url: "{{baseUrl}}/api/token/"
+  body:
+    type: json
+    data: |-
+      {
+        "email": "admin@site.com",
+        "password": "admin"
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        if (res.status === 200 && res.body) {
+          if (res.body.access) {
+            bru.setEnvVar("accessToken", res.body.access);
+          }
+          if (res.body.refresh) {
+            bru.setEnvVar("refreshToken", res.body.refresh);
+          }
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: 200 Response
+    request:
+      url: "{{baseUrl}}/api/token/"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "email": "",
+            "password": "",
+            "access": "",
+            "refresh": ""
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "email": "",
+            "password": "",
+            "access": "",
+            "refresh": ""
+          }
+
+docs: |-
+  Takes a set of user credentials and returns an access and refresh JSON web
+  token pair to prove the authentication of those credentials.

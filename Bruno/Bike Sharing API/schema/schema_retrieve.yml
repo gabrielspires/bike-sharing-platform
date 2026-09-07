@@ -1,0 +1,2125 @@
+info:
+  name: schema_retrieve
+  type: http
+  seq: 1
+  tags:
+    - schema
+
+http:
+  method: GET
+  url: "{{baseUrl}}/schema/"
+  params:
+    - name: format
+      value: json
+      type: query
+      disabled: true
+    - name: format
+      value: yaml
+      type: query
+      disabled: true
+    - name: lang
+      value: af
+      type: query
+      disabled: true
+    - name: lang
+      value: ar
+      type: query
+      disabled: true
+    - name: lang
+      value: ar-dz
+      type: query
+      disabled: true
+    - name: lang
+      value: ast
+      type: query
+      disabled: true
+    - name: lang
+      value: az
+      type: query
+      disabled: true
+    - name: lang
+      value: be
+      type: query
+      disabled: true
+    - name: lang
+      value: bg
+      type: query
+      disabled: true
+    - name: lang
+      value: bn
+      type: query
+      disabled: true
+    - name: lang
+      value: br
+      type: query
+      disabled: true
+    - name: lang
+      value: bs
+      type: query
+      disabled: true
+    - name: lang
+      value: ca
+      type: query
+      disabled: true
+    - name: lang
+      value: ckb
+      type: query
+      disabled: true
+    - name: lang
+      value: cs
+      type: query
+      disabled: true
+    - name: lang
+      value: cy
+      type: query
+      disabled: true
+    - name: lang
+      value: da
+      type: query
+      disabled: true
+    - name: lang
+      value: de
+      type: query
+      disabled: true
+    - name: lang
+      value: dsb
+      type: query
+      disabled: true
+    - name: lang
+      value: el
+      type: query
+      disabled: true
+    - name: lang
+      value: en
+      type: query
+      disabled: true
+    - name: lang
+      value: en-au
+      type: query
+      disabled: true
+    - name: lang
+      value: en-gb
+      type: query
+      disabled: true
+    - name: lang
+      value: eo
+      type: query
+      disabled: true
+    - name: lang
+      value: es
+      type: query
+      disabled: true
+    - name: lang
+      value: es-ar
+      type: query
+      disabled: true
+    - name: lang
+      value: es-co
+      type: query
+      disabled: true
+    - name: lang
+      value: es-mx
+      type: query
+      disabled: true
+    - name: lang
+      value: es-ni
+      type: query
+      disabled: true
+    - name: lang
+      value: es-ve
+      type: query
+      disabled: true
+    - name: lang
+      value: et
+      type: query
+      disabled: true
+    - name: lang
+      value: eu
+      type: query
+      disabled: true
+    - name: lang
+      value: fa
+      type: query
+      disabled: true
+    - name: lang
+      value: fi
+      type: query
+      disabled: true
+    - name: lang
+      value: fr
+      type: query
+      disabled: true
+    - name: lang
+      value: fy
+      type: query
+      disabled: true
+    - name: lang
+      value: ga
+      type: query
+      disabled: true
+    - name: lang
+      value: gd
+      type: query
+      disabled: true
+    - name: lang
+      value: gl
+      type: query
+      disabled: true
+    - name: lang
+      value: he
+      type: query
+      disabled: true
+    - name: lang
+      value: hi
+      type: query
+      disabled: true
+    - name: lang
+      value: hr
+      type: query
+      disabled: true
+    - name: lang
+      value: hsb
+      type: query
+      disabled: true
+    - name: lang
+      value: ht
+      type: query
+      disabled: true
+    - name: lang
+      value: hu
+      type: query
+      disabled: true
+    - name: lang
+      value: hy
+      type: query
+      disabled: true
+    - name: lang
+      value: ia
+      type: query
+      disabled: true
+    - name: lang
+      value: id
+      type: query
+      disabled: true
+    - name: lang
+      value: ig
+      type: query
+      disabled: true
+    - name: lang
+      value: io
+      type: query
+      disabled: true
+    - name: lang
+      value: is
+      type: query
+      disabled: true
+    - name: lang
+      value: it
+      type: query
+      disabled: true
+    - name: lang
+      value: ja
+      type: query
+      disabled: true
+    - name: lang
+      value: ka
+      type: query
+      disabled: true
+    - name: lang
+      value: kab
+      type: query
+      disabled: true
+    - name: lang
+      value: kk
+      type: query
+      disabled: true
+    - name: lang
+      value: km
+      type: query
+      disabled: true
+    - name: lang
+      value: kn
+      type: query
+      disabled: true
+    - name: lang
+      value: ko
+      type: query
+      disabled: true
+    - name: lang
+      value: ky
+      type: query
+      disabled: true
+    - name: lang
+      value: lb
+      type: query
+      disabled: true
+    - name: lang
+      value: lt
+      type: query
+      disabled: true
+    - name: lang
+      value: lv
+      type: query
+      disabled: true
+    - name: lang
+      value: mk
+      type: query
+      disabled: true
+    - name: lang
+      value: ml
+      type: query
+      disabled: true
+    - name: lang
+      value: mn
+      type: query
+      disabled: true
+    - name: lang
+      value: mr
+      type: query
+      disabled: true
+    - name: lang
+      value: ms
+      type: query
+      disabled: true
+    - name: lang
+      value: my
+      type: query
+      disabled: true
+    - name: lang
+      value: nb
+      type: query
+      disabled: true
+    - name: lang
+      value: ne
+      type: query
+      disabled: true
+    - name: lang
+      value: nl
+      type: query
+      disabled: true
+    - name: lang
+      value: nn
+      type: query
+      disabled: true
+    - name: lang
+      value: os
+      type: query
+      disabled: true
+    - name: lang
+      value: pa
+      type: query
+      disabled: true
+    - name: lang
+      value: pl
+      type: query
+      disabled: true
+    - name: lang
+      value: pt
+      type: query
+      disabled: true
+    - name: lang
+      value: pt-br
+      type: query
+      disabled: true
+    - name: lang
+      value: ro
+      type: query
+      disabled: true
+    - name: lang
+      value: ru
+      type: query
+      disabled: true
+    - name: lang
+      value: sk
+      type: query
+      disabled: true
+    - name: lang
+      value: sl
+      type: query
+      disabled: true
+    - name: lang
+      value: sq
+      type: query
+      disabled: true
+    - name: lang
+      value: sr
+      type: query
+      disabled: true
+    - name: lang
+      value: sr-latn
+      type: query
+      disabled: true
+    - name: lang
+      value: sv
+      type: query
+      disabled: true
+    - name: lang
+      value: sw
+      type: query
+      disabled: true
+    - name: lang
+      value: ta
+      type: query
+      disabled: true
+    - name: lang
+      value: te
+      type: query
+      disabled: true
+    - name: lang
+      value: tg
+      type: query
+      disabled: true
+    - name: lang
+      value: th
+      type: query
+      disabled: true
+    - name: lang
+      value: tk
+      type: query
+      disabled: true
+    - name: lang
+      value: tr
+      type: query
+      disabled: true
+    - name: lang
+      value: tt
+      type: query
+      disabled: true
+    - name: lang
+      value: udm
+      type: query
+      disabled: true
+    - name: lang
+      value: ug
+      type: query
+      disabled: true
+    - name: lang
+      value: uk
+      type: query
+      disabled: true
+    - name: lang
+      value: ur
+      type: query
+      disabled: true
+    - name: lang
+      value: uz
+      type: query
+      disabled: true
+    - name: lang
+      value: vi
+      type: query
+      disabled: true
+    - name: lang
+      value: zh-hans
+      type: query
+      disabled: true
+    - name: lang
+      value: zh-hant
+      type: query
+      disabled: true
+  auth:
+    type: bearer
+    token: "{{accessToken}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: 200 Response
+    request:
+      url: "{{baseUrl}}/schema/"
+      method: GET
+      params:
+        - name: format
+          value: json
+          type: query
+          disabled: true
+        - name: format
+          value: yaml
+          type: query
+          disabled: true
+        - name: lang
+          value: af
+          type: query
+          disabled: true
+        - name: lang
+          value: ar
+          type: query
+          disabled: true
+        - name: lang
+          value: ar-dz
+          type: query
+          disabled: true
+        - name: lang
+          value: ast
+          type: query
+          disabled: true
+        - name: lang
+          value: az
+          type: query
+          disabled: true
+        - name: lang
+          value: be
+          type: query
+          disabled: true
+        - name: lang
+          value: bg
+          type: query
+          disabled: true
+        - name: lang
+          value: bn
+          type: query
+          disabled: true
+        - name: lang
+          value: br
+          type: query
+          disabled: true
+        - name: lang
+          value: bs
+          type: query
+          disabled: true
+        - name: lang
+          value: ca
+          type: query
+          disabled: true
+        - name: lang
+          value: ckb
+          type: query
+          disabled: true
+        - name: lang
+          value: cs
+          type: query
+          disabled: true
+        - name: lang
+          value: cy
+          type: query
+          disabled: true
+        - name: lang
+          value: da
+          type: query
+          disabled: true
+        - name: lang
+          value: de
+          type: query
+          disabled: true
+        - name: lang
+          value: dsb
+          type: query
+          disabled: true
+        - name: lang
+          value: el
+          type: query
+          disabled: true
+        - name: lang
+          value: en
+          type: query
+          disabled: true
+        - name: lang
+          value: en-au
+          type: query
+          disabled: true
+        - name: lang
+          value: en-gb
+          type: query
+          disabled: true
+        - name: lang
+          value: eo
+          type: query
+          disabled: true
+        - name: lang
+          value: es
+          type: query
+          disabled: true
+        - name: lang
+          value: es-ar
+          type: query
+          disabled: true
+        - name: lang
+          value: es-co
+          type: query
+          disabled: true
+        - name: lang
+          value: es-mx
+          type: query
+          disabled: true
+        - name: lang
+          value: es-ni
+          type: query
+          disabled: true
+        - name: lang
+          value: es-ve
+          type: query
+          disabled: true
+        - name: lang
+          value: et
+          type: query
+          disabled: true
+        - name: lang
+          value: eu
+          type: query
+          disabled: true
+        - name: lang
+          value: fa
+          type: query
+          disabled: true
+        - name: lang
+          value: fi
+          type: query
+          disabled: true
+        - name: lang
+          value: fr
+          type: query
+          disabled: true
+        - name: lang
+          value: fy
+          type: query
+          disabled: true
+        - name: lang
+          value: ga
+          type: query
+          disabled: true
+        - name: lang
+          value: gd
+          type: query
+          disabled: true
+        - name: lang
+          value: gl
+          type: query
+          disabled: true
+        - name: lang
+          value: he
+          type: query
+          disabled: true
+        - name: lang
+          value: hi
+          type: query
+          disabled: true
+        - name: lang
+          value: hr
+          type: query
+          disabled: true
+        - name: lang
+          value: hsb
+          type: query
+          disabled: true
+        - name: lang
+          value: ht
+          type: query
+          disabled: true
+        - name: lang
+          value: hu
+          type: query
+          disabled: true
+        - name: lang
+          value: hy
+          type: query
+          disabled: true
+        - name: lang
+          value: ia
+          type: query
+          disabled: true
+        - name: lang
+          value: id
+          type: query
+          disabled: true
+        - name: lang
+          value: ig
+          type: query
+          disabled: true
+        - name: lang
+          value: io
+          type: query
+          disabled: true
+        - name: lang
+          value: is
+          type: query
+          disabled: true
+        - name: lang
+          value: it
+          type: query
+          disabled: true
+        - name: lang
+          value: ja
+          type: query
+          disabled: true
+        - name: lang
+          value: ka
+          type: query
+          disabled: true
+        - name: lang
+          value: kab
+          type: query
+          disabled: true
+        - name: lang
+          value: kk
+          type: query
+          disabled: true
+        - name: lang
+          value: km
+          type: query
+          disabled: true
+        - name: lang
+          value: kn
+          type: query
+          disabled: true
+        - name: lang
+          value: ko
+          type: query
+          disabled: true
+        - name: lang
+          value: ky
+          type: query
+          disabled: true
+        - name: lang
+          value: lb
+          type: query
+          disabled: true
+        - name: lang
+          value: lt
+          type: query
+          disabled: true
+        - name: lang
+          value: lv
+          type: query
+          disabled: true
+        - name: lang
+          value: mk
+          type: query
+          disabled: true
+        - name: lang
+          value: ml
+          type: query
+          disabled: true
+        - name: lang
+          value: mn
+          type: query
+          disabled: true
+        - name: lang
+          value: mr
+          type: query
+          disabled: true
+        - name: lang
+          value: ms
+          type: query
+          disabled: true
+        - name: lang
+          value: my
+          type: query
+          disabled: true
+        - name: lang
+          value: nb
+          type: query
+          disabled: true
+        - name: lang
+          value: ne
+          type: query
+          disabled: true
+        - name: lang
+          value: nl
+          type: query
+          disabled: true
+        - name: lang
+          value: nn
+          type: query
+          disabled: true
+        - name: lang
+          value: os
+          type: query
+          disabled: true
+        - name: lang
+          value: pa
+          type: query
+          disabled: true
+        - name: lang
+          value: pl
+          type: query
+          disabled: true
+        - name: lang
+          value: pt
+          type: query
+          disabled: true
+        - name: lang
+          value: pt-br
+          type: query
+          disabled: true
+        - name: lang
+          value: ro
+          type: query
+          disabled: true
+        - name: lang
+          value: ru
+          type: query
+          disabled: true
+        - name: lang
+          value: sk
+          type: query
+          disabled: true
+        - name: lang
+          value: sl
+          type: query
+          disabled: true
+        - name: lang
+          value: sq
+          type: query
+          disabled: true
+        - name: lang
+          value: sr
+          type: query
+          disabled: true
+        - name: lang
+          value: sr-latn
+          type: query
+          disabled: true
+        - name: lang
+          value: sv
+          type: query
+          disabled: true
+        - name: lang
+          value: sw
+          type: query
+          disabled: true
+        - name: lang
+          value: ta
+          type: query
+          disabled: true
+        - name: lang
+          value: te
+          type: query
+          disabled: true
+        - name: lang
+          value: tg
+          type: query
+          disabled: true
+        - name: lang
+          value: th
+          type: query
+          disabled: true
+        - name: lang
+          value: tk
+          type: query
+          disabled: true
+        - name: lang
+          value: tr
+          type: query
+          disabled: true
+        - name: lang
+          value: tt
+          type: query
+          disabled: true
+        - name: lang
+          value: udm
+          type: query
+          disabled: true
+        - name: lang
+          value: ug
+          type: query
+          disabled: true
+        - name: lang
+          value: uk
+          type: query
+          disabled: true
+        - name: lang
+          value: ur
+          type: query
+          disabled: true
+        - name: lang
+          value: uz
+          type: query
+          disabled: true
+        - name: lang
+          value: vi
+          type: query
+          disabled: true
+        - name: lang
+          value: zh-hans
+          type: query
+          disabled: true
+        - name: lang
+          value: zh-hant
+          type: query
+          disabled: true
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/vnd.oai.openapi
+      body:
+        type: text
+        data: "{}"
+  - name: 200 Response
+    request:
+      url: "{{baseUrl}}/schema/"
+      method: GET
+      params:
+        - name: format
+          value: json
+          type: query
+          disabled: true
+        - name: format
+          value: yaml
+          type: query
+          disabled: true
+        - name: lang
+          value: af
+          type: query
+          disabled: true
+        - name: lang
+          value: ar
+          type: query
+          disabled: true
+        - name: lang
+          value: ar-dz
+          type: query
+          disabled: true
+        - name: lang
+          value: ast
+          type: query
+          disabled: true
+        - name: lang
+          value: az
+          type: query
+          disabled: true
+        - name: lang
+          value: be
+          type: query
+          disabled: true
+        - name: lang
+          value: bg
+          type: query
+          disabled: true
+        - name: lang
+          value: bn
+          type: query
+          disabled: true
+        - name: lang
+          value: br
+          type: query
+          disabled: true
+        - name: lang
+          value: bs
+          type: query
+          disabled: true
+        - name: lang
+          value: ca
+          type: query
+          disabled: true
+        - name: lang
+          value: ckb
+          type: query
+          disabled: true
+        - name: lang
+          value: cs
+          type: query
+          disabled: true
+        - name: lang
+          value: cy
+          type: query
+          disabled: true
+        - name: lang
+          value: da
+          type: query
+          disabled: true
+        - name: lang
+          value: de
+          type: query
+          disabled: true
+        - name: lang
+          value: dsb
+          type: query
+          disabled: true
+        - name: lang
+          value: el
+          type: query
+          disabled: true
+        - name: lang
+          value: en
+          type: query
+          disabled: true
+        - name: lang
+          value: en-au
+          type: query
+          disabled: true
+        - name: lang
+          value: en-gb
+          type: query
+          disabled: true
+        - name: lang
+          value: eo
+          type: query
+          disabled: true
+        - name: lang
+          value: es
+          type: query
+          disabled: true
+        - name: lang
+          value: es-ar
+          type: query
+          disabled: true
+        - name: lang
+          value: es-co
+          type: query
+          disabled: true
+        - name: lang
+          value: es-mx
+          type: query
+          disabled: true
+        - name: lang
+          value: es-ni
+          type: query
+          disabled: true
+        - name: lang
+          value: es-ve
+          type: query
+          disabled: true
+        - name: lang
+          value: et
+          type: query
+          disabled: true
+        - name: lang
+          value: eu
+          type: query
+          disabled: true
+        - name: lang
+          value: fa
+          type: query
+          disabled: true
+        - name: lang
+          value: fi
+          type: query
+          disabled: true
+        - name: lang
+          value: fr
+          type: query
+          disabled: true
+        - name: lang
+          value: fy
+          type: query
+          disabled: true
+        - name: lang
+          value: ga
+          type: query
+          disabled: true
+        - name: lang
+          value: gd
+          type: query
+          disabled: true
+        - name: lang
+          value: gl
+          type: query
+          disabled: true
+        - name: lang
+          value: he
+          type: query
+          disabled: true
+        - name: lang
+          value: hi
+          type: query
+          disabled: true
+        - name: lang
+          value: hr
+          type: query
+          disabled: true
+        - name: lang
+          value: hsb
+          type: query
+          disabled: true
+        - name: lang
+          value: ht
+          type: query
+          disabled: true
+        - name: lang
+          value: hu
+          type: query
+          disabled: true
+        - name: lang
+          value: hy
+          type: query
+          disabled: true
+        - name: lang
+          value: ia
+          type: query
+          disabled: true
+        - name: lang
+          value: id
+          type: query
+          disabled: true
+        - name: lang
+          value: ig
+          type: query
+          disabled: true
+        - name: lang
+          value: io
+          type: query
+          disabled: true
+        - name: lang
+          value: is
+          type: query
+          disabled: true
+        - name: lang
+          value: it
+          type: query
+          disabled: true
+        - name: lang
+          value: ja
+          type: query
+          disabled: true
+        - name: lang
+          value: ka
+          type: query
+          disabled: true
+        - name: lang
+          value: kab
+          type: query
+          disabled: true
+        - name: lang
+          value: kk
+          type: query
+          disabled: true
+        - name: lang
+          value: km
+          type: query
+          disabled: true
+        - name: lang
+          value: kn
+          type: query
+          disabled: true
+        - name: lang
+          value: ko
+          type: query
+          disabled: true
+        - name: lang
+          value: ky
+          type: query
+          disabled: true
+        - name: lang
+          value: lb
+          type: query
+          disabled: true
+        - name: lang
+          value: lt
+          type: query
+          disabled: true
+        - name: lang
+          value: lv
+          type: query
+          disabled: true
+        - name: lang
+          value: mk
+          type: query
+          disabled: true
+        - name: lang
+          value: ml
+          type: query
+          disabled: true
+        - name: lang
+          value: mn
+          type: query
+          disabled: true
+        - name: lang
+          value: mr
+          type: query
+          disabled: true
+        - name: lang
+          value: ms
+          type: query
+          disabled: true
+        - name: lang
+          value: my
+          type: query
+          disabled: true
+        - name: lang
+          value: nb
+          type: query
+          disabled: true
+        - name: lang
+          value: ne
+          type: query
+          disabled: true
+        - name: lang
+          value: nl
+          type: query
+          disabled: true
+        - name: lang
+          value: nn
+          type: query
+          disabled: true
+        - name: lang
+          value: os
+          type: query
+          disabled: true
+        - name: lang
+          value: pa
+          type: query
+          disabled: true
+        - name: lang
+          value: pl
+          type: query
+          disabled: true
+        - name: lang
+          value: pt
+          type: query
+          disabled: true
+        - name: lang
+          value: pt-br
+          type: query
+          disabled: true
+        - name: lang
+          value: ro
+          type: query
+          disabled: true
+        - name: lang
+          value: ru
+          type: query
+          disabled: true
+        - name: lang
+          value: sk
+          type: query
+          disabled: true
+        - name: lang
+          value: sl
+          type: query
+          disabled: true
+        - name: lang
+          value: sq
+          type: query
+          disabled: true
+        - name: lang
+          value: sr
+          type: query
+          disabled: true
+        - name: lang
+          value: sr-latn
+          type: query
+          disabled: true
+        - name: lang
+          value: sv
+          type: query
+          disabled: true
+        - name: lang
+          value: sw
+          type: query
+          disabled: true
+        - name: lang
+          value: ta
+          type: query
+          disabled: true
+        - name: lang
+          value: te
+          type: query
+          disabled: true
+        - name: lang
+          value: tg
+          type: query
+          disabled: true
+        - name: lang
+          value: th
+          type: query
+          disabled: true
+        - name: lang
+          value: tk
+          type: query
+          disabled: true
+        - name: lang
+          value: tr
+          type: query
+          disabled: true
+        - name: lang
+          value: tt
+          type: query
+          disabled: true
+        - name: lang
+          value: udm
+          type: query
+          disabled: true
+        - name: lang
+          value: ug
+          type: query
+          disabled: true
+        - name: lang
+          value: uk
+          type: query
+          disabled: true
+        - name: lang
+          value: ur
+          type: query
+          disabled: true
+        - name: lang
+          value: uz
+          type: query
+          disabled: true
+        - name: lang
+          value: vi
+          type: query
+          disabled: true
+        - name: lang
+          value: zh-hans
+          type: query
+          disabled: true
+        - name: lang
+          value: zh-hant
+          type: query
+          disabled: true
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/yaml
+      body:
+        type: text
+        data: "{}"
+  - name: 200 Response
+    request:
+      url: "{{baseUrl}}/schema/"
+      method: GET
+      params:
+        - name: format
+          value: json
+          type: query
+          disabled: true
+        - name: format
+          value: yaml
+          type: query
+          disabled: true
+        - name: lang
+          value: af
+          type: query
+          disabled: true
+        - name: lang
+          value: ar
+          type: query
+          disabled: true
+        - name: lang
+          value: ar-dz
+          type: query
+          disabled: true
+        - name: lang
+          value: ast
+          type: query
+          disabled: true
+        - name: lang
+          value: az
+          type: query
+          disabled: true
+        - name: lang
+          value: be
+          type: query
+          disabled: true
+        - name: lang
+          value: bg
+          type: query
+          disabled: true
+        - name: lang
+          value: bn
+          type: query
+          disabled: true
+        - name: lang
+          value: br
+          type: query
+          disabled: true
+        - name: lang
+          value: bs
+          type: query
+          disabled: true
+        - name: lang
+          value: ca
+          type: query
+          disabled: true
+        - name: lang
+          value: ckb
+          type: query
+          disabled: true
+        - name: lang
+          value: cs
+          type: query
+          disabled: true
+        - name: lang
+          value: cy
+          type: query
+          disabled: true
+        - name: lang
+          value: da
+          type: query
+          disabled: true
+        - name: lang
+          value: de
+          type: query
+          disabled: true
+        - name: lang
+          value: dsb
+          type: query
+          disabled: true
+        - name: lang
+          value: el
+          type: query
+          disabled: true
+        - name: lang
+          value: en
+          type: query
+          disabled: true
+        - name: lang
+          value: en-au
+          type: query
+          disabled: true
+        - name: lang
+          value: en-gb
+          type: query
+          disabled: true
+        - name: lang
+          value: eo
+          type: query
+          disabled: true
+        - name: lang
+          value: es
+          type: query
+          disabled: true
+        - name: lang
+          value: es-ar
+          type: query
+          disabled: true
+        - name: lang
+          value: es-co
+          type: query
+          disabled: true
+        - name: lang
+          value: es-mx
+          type: query
+          disabled: true
+        - name: lang
+          value: es-ni
+          type: query
+          disabled: true
+        - name: lang
+          value: es-ve
+          type: query
+          disabled: true
+        - name: lang
+          value: et
+          type: query
+          disabled: true
+        - name: lang
+          value: eu
+          type: query
+          disabled: true
+        - name: lang
+          value: fa
+          type: query
+          disabled: true
+        - name: lang
+          value: fi
+          type: query
+          disabled: true
+        - name: lang
+          value: fr
+          type: query
+          disabled: true
+        - name: lang
+          value: fy
+          type: query
+          disabled: true
+        - name: lang
+          value: ga
+          type: query
+          disabled: true
+        - name: lang
+          value: gd
+          type: query
+          disabled: true
+        - name: lang
+          value: gl
+          type: query
+          disabled: true
+        - name: lang
+          value: he
+          type: query
+          disabled: true
+        - name: lang
+          value: hi
+          type: query
+          disabled: true
+        - name: lang
+          value: hr
+          type: query
+          disabled: true
+        - name: lang
+          value: hsb
+          type: query
+          disabled: true
+        - name: lang
+          value: ht
+          type: query
+          disabled: true
+        - name: lang
+          value: hu
+          type: query
+          disabled: true
+        - name: lang
+          value: hy
+          type: query
+          disabled: true
+        - name: lang
+          value: ia
+          type: query
+          disabled: true
+        - name: lang
+          value: id
+          type: query
+          disabled: true
+        - name: lang
+          value: ig
+          type: query
+          disabled: true
+        - name: lang
+          value: io
+          type: query
+          disabled: true
+        - name: lang
+          value: is
+          type: query
+          disabled: true
+        - name: lang
+          value: it
+          type: query
+          disabled: true
+        - name: lang
+          value: ja
+          type: query
+          disabled: true
+        - name: lang
+          value: ka
+          type: query
+          disabled: true
+        - name: lang
+          value: kab
+          type: query
+          disabled: true
+        - name: lang
+          value: kk
+          type: query
+          disabled: true
+        - name: lang
+          value: km
+          type: query
+          disabled: true
+        - name: lang
+          value: kn
+          type: query
+          disabled: true
+        - name: lang
+          value: ko
+          type: query
+          disabled: true
+        - name: lang
+          value: ky
+          type: query
+          disabled: true
+        - name: lang
+          value: lb
+          type: query
+          disabled: true
+        - name: lang
+          value: lt
+          type: query
+          disabled: true
+        - name: lang
+          value: lv
+          type: query
+          disabled: true
+        - name: lang
+          value: mk
+          type: query
+          disabled: true
+        - name: lang
+          value: ml
+          type: query
+          disabled: true
+        - name: lang
+          value: mn
+          type: query
+          disabled: true
+        - name: lang
+          value: mr
+          type: query
+          disabled: true
+        - name: lang
+          value: ms
+          type: query
+          disabled: true
+        - name: lang
+          value: my
+          type: query
+          disabled: true
+        - name: lang
+          value: nb
+          type: query
+          disabled: true
+        - name: lang
+          value: ne
+          type: query
+          disabled: true
+        - name: lang
+          value: nl
+          type: query
+          disabled: true
+        - name: lang
+          value: nn
+          type: query
+          disabled: true
+        - name: lang
+          value: os
+          type: query
+          disabled: true
+        - name: lang
+          value: pa
+          type: query
+          disabled: true
+        - name: lang
+          value: pl
+          type: query
+          disabled: true
+        - name: lang
+          value: pt
+          type: query
+          disabled: true
+        - name: lang
+          value: pt-br
+          type: query
+          disabled: true
+        - name: lang
+          value: ro
+          type: query
+          disabled: true
+        - name: lang
+          value: ru
+          type: query
+          disabled: true
+        - name: lang
+          value: sk
+          type: query
+          disabled: true
+        - name: lang
+          value: sl
+          type: query
+          disabled: true
+        - name: lang
+          value: sq
+          type: query
+          disabled: true
+        - name: lang
+          value: sr
+          type: query
+          disabled: true
+        - name: lang
+          value: sr-latn
+          type: query
+          disabled: true
+        - name: lang
+          value: sv
+          type: query
+          disabled: true
+        - name: lang
+          value: sw
+          type: query
+          disabled: true
+        - name: lang
+          value: ta
+          type: query
+          disabled: true
+        - name: lang
+          value: te
+          type: query
+          disabled: true
+        - name: lang
+          value: tg
+          type: query
+          disabled: true
+        - name: lang
+          value: th
+          type: query
+          disabled: true
+        - name: lang
+          value: tk
+          type: query
+          disabled: true
+        - name: lang
+          value: tr
+          type: query
+          disabled: true
+        - name: lang
+          value: tt
+          type: query
+          disabled: true
+        - name: lang
+          value: udm
+          type: query
+          disabled: true
+        - name: lang
+          value: ug
+          type: query
+          disabled: true
+        - name: lang
+          value: uk
+          type: query
+          disabled: true
+        - name: lang
+          value: ur
+          type: query
+          disabled: true
+        - name: lang
+          value: uz
+          type: query
+          disabled: true
+        - name: lang
+          value: vi
+          type: query
+          disabled: true
+        - name: lang
+          value: zh-hans
+          type: query
+          disabled: true
+        - name: lang
+          value: zh-hant
+          type: query
+          disabled: true
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/vnd.oai.openapi+json
+      body:
+        type: json
+        data: "{}"
+  - name: 200 Response
+    request:
+      url: "{{baseUrl}}/schema/"
+      method: GET
+      params:
+        - name: format
+          value: json
+          type: query
+          disabled: true
+        - name: format
+          value: yaml
+          type: query
+          disabled: true
+        - name: lang
+          value: af
+          type: query
+          disabled: true
+        - name: lang
+          value: ar
+          type: query
+          disabled: true
+        - name: lang
+          value: ar-dz
+          type: query
+          disabled: true
+        - name: lang
+          value: ast
+          type: query
+          disabled: true
+        - name: lang
+          value: az
+          type: query
+          disabled: true
+        - name: lang
+          value: be
+          type: query
+          disabled: true
+        - name: lang
+          value: bg
+          type: query
+          disabled: true
+        - name: lang
+          value: bn
+          type: query
+          disabled: true
+        - name: lang
+          value: br
+          type: query
+          disabled: true
+        - name: lang
+          value: bs
+          type: query
+          disabled: true
+        - name: lang
+          value: ca
+          type: query
+          disabled: true
+        - name: lang
+          value: ckb
+          type: query
+          disabled: true
+        - name: lang
+          value: cs
+          type: query
+          disabled: true
+        - name: lang
+          value: cy
+          type: query
+          disabled: true
+        - name: lang
+          value: da
+          type: query
+          disabled: true
+        - name: lang
+          value: de
+          type: query
+          disabled: true
+        - name: lang
+          value: dsb
+          type: query
+          disabled: true
+        - name: lang
+          value: el
+          type: query
+          disabled: true
+        - name: lang
+          value: en
+          type: query
+          disabled: true
+        - name: lang
+          value: en-au
+          type: query
+          disabled: true
+        - name: lang
+          value: en-gb
+          type: query
+          disabled: true
+        - name: lang
+          value: eo
+          type: query
+          disabled: true
+        - name: lang
+          value: es
+          type: query
+          disabled: true
+        - name: lang
+          value: es-ar
+          type: query
+          disabled: true
+        - name: lang
+          value: es-co
+          type: query
+          disabled: true
+        - name: lang
+          value: es-mx
+          type: query
+          disabled: true
+        - name: lang
+          value: es-ni
+          type: query
+          disabled: true
+        - name: lang
+          value: es-ve
+          type: query
+          disabled: true
+        - name: lang
+          value: et
+          type: query
+          disabled: true
+        - name: lang
+          value: eu
+          type: query
+          disabled: true
+        - name: lang
+          value: fa
+          type: query
+          disabled: true
+        - name: lang
+          value: fi
+          type: query
+          disabled: true
+        - name: lang
+          value: fr
+          type: query
+          disabled: true
+        - name: lang
+          value: fy
+          type: query
+          disabled: true
+        - name: lang
+          value: ga
+          type: query
+          disabled: true
+        - name: lang
+          value: gd
+          type: query
+          disabled: true
+        - name: lang
+          value: gl
+          type: query
+          disabled: true
+        - name: lang
+          value: he
+          type: query
+          disabled: true
+        - name: lang
+          value: hi
+          type: query
+          disabled: true
+        - name: lang
+          value: hr
+          type: query
+          disabled: true
+        - name: lang
+          value: hsb
+          type: query
+          disabled: true
+        - name: lang
+          value: ht
+          type: query
+          disabled: true
+        - name: lang
+          value: hu
+          type: query
+          disabled: true
+        - name: lang
+          value: hy
+          type: query
+          disabled: true
+        - name: lang
+          value: ia
+          type: query
+          disabled: true
+        - name: lang
+          value: id
+          type: query
+          disabled: true
+        - name: lang
+          value: ig
+          type: query
+          disabled: true
+        - name: lang
+          value: io
+          type: query
+          disabled: true
+        - name: lang
+          value: is
+          type: query
+          disabled: true
+        - name: lang
+          value: it
+          type: query
+          disabled: true
+        - name: lang
+          value: ja
+          type: query
+          disabled: true
+        - name: lang
+          value: ka
+          type: query
+          disabled: true
+        - name: lang
+          value: kab
+          type: query
+          disabled: true
+        - name: lang
+          value: kk
+          type: query
+          disabled: true
+        - name: lang
+          value: km
+          type: query
+          disabled: true
+        - name: lang
+          value: kn
+          type: query
+          disabled: true
+        - name: lang
+          value: ko
+          type: query
+          disabled: true
+        - name: lang
+          value: ky
+          type: query
+          disabled: true
+        - name: lang
+          value: lb
+          type: query
+          disabled: true
+        - name: lang
+          value: lt
+          type: query
+          disabled: true
+        - name: lang
+          value: lv
+          type: query
+          disabled: true
+        - name: lang
+          value: mk
+          type: query
+          disabled: true
+        - name: lang
+          value: ml
+          type: query
+          disabled: true
+        - name: lang
+          value: mn
+          type: query
+          disabled: true
+        - name: lang
+          value: mr
+          type: query
+          disabled: true
+        - name: lang
+          value: ms
+          type: query
+          disabled: true
+        - name: lang
+          value: my
+          type: query
+          disabled: true
+        - name: lang
+          value: nb
+          type: query
+          disabled: true
+        - name: lang
+          value: ne
+          type: query
+          disabled: true
+        - name: lang
+          value: nl
+          type: query
+          disabled: true
+        - name: lang
+          value: nn
+          type: query
+          disabled: true
+        - name: lang
+          value: os
+          type: query
+          disabled: true
+        - name: lang
+          value: pa
+          type: query
+          disabled: true
+        - name: lang
+          value: pl
+          type: query
+          disabled: true
+        - name: lang
+          value: pt
+          type: query
+          disabled: true
+        - name: lang
+          value: pt-br
+          type: query
+          disabled: true
+        - name: lang
+          value: ro
+          type: query
+          disabled: true
+        - name: lang
+          value: ru
+          type: query
+          disabled: true
+        - name: lang
+          value: sk
+          type: query
+          disabled: true
+        - name: lang
+          value: sl
+          type: query
+          disabled: true
+        - name: lang
+          value: sq
+          type: query
+          disabled: true
+        - name: lang
+          value: sr
+          type: query
+          disabled: true
+        - name: lang
+          value: sr-latn
+          type: query
+          disabled: true
+        - name: lang
+          value: sv
+          type: query
+          disabled: true
+        - name: lang
+          value: sw
+          type: query
+          disabled: true
+        - name: lang
+          value: ta
+          type: query
+          disabled: true
+        - name: lang
+          value: te
+          type: query
+          disabled: true
+        - name: lang
+          value: tg
+          type: query
+          disabled: true
+        - name: lang
+          value: th
+          type: query
+          disabled: true
+        - name: lang
+          value: tk
+          type: query
+          disabled: true
+        - name: lang
+          value: tr
+          type: query
+          disabled: true
+        - name: lang
+          value: tt
+          type: query
+          disabled: true
+        - name: lang
+          value: udm
+          type: query
+          disabled: true
+        - name: lang
+          value: ug
+          type: query
+          disabled: true
+        - name: lang
+          value: uk
+          type: query
+          disabled: true
+        - name: lang
+          value: ur
+          type: query
+          disabled: true
+        - name: lang
+          value: uz
+          type: query
+          disabled: true
+        - name: lang
+          value: vi
+          type: query
+          disabled: true
+        - name: lang
+          value: zh-hans
+          type: query
+          disabled: true
+        - name: lang
+          value: zh-hant
+          type: query
+          disabled: true
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: "{}"
+
+docs: |-
+  OpenApi3 schema for this API. Format can be selected via content negotiation.
+
+  - YAML: application/vnd.oai.openapi
+  - JSON: application/vnd.oai.openapi+json

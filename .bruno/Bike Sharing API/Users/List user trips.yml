@@ -1,33 +1,22 @@
 info:
-  name: Finish a trip
+  name: List user trips
   type: http
   seq: 2
   tags:
-    - Trips
+    - Users
 
 http:
-  method: PATCH
-  url: "{{baseUrl}}/trips/{{tripID}}/finish/"
+  method: GET
+  url: "{{baseUrl}}/users/trips/"
   params:
     - name: page
       value: ""
       type: query
       description: A page number within the paginated result set.
       disabled: true
-  body:
-    type: json
-    data: |-
-      {
-        "score": 5
-      }
   auth:
     type: bearer
     token: "{{token}}"
-
-runtime:
-  variables:
-    - name: tripID
-      value: 01a07dcf-4cef-711e-ab9b-6f62f3998a6c
 
 settings:
   encodeUrl: true
@@ -39,29 +28,14 @@ settings:
 examples:
   - name: 200 Response
     request:
-      url: "{{baseUrl}}/trips/:id/finish/"
-      method: PATCH
+      url: "{{baseUrl}}/users/trips/"
+      method: GET
       params:
-        - name: id
-          value: ""
-          type: path
         - name: page
           value: ""
           type: query
           description: A page number within the paginated result set.
           disabled: true
-      body:
-        type: json
-        data: |-
-          {
-            "id": "",
-            "user": "",
-            "category": "",
-            "created_at": "",
-            "updated_at": "",
-            "finished_at": "",
-            "score": 0
-          }
     response:
       status: 200
       statusText: OK
@@ -88,4 +62,4 @@ examples:
             ]
           }
 
-docs: Finishes a trip and trigger the email sending task.
+docs: Returns all trips from a user.

@@ -15,6 +15,73 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - bsp_network
+
+  rabbitmq:
+    image: rabbitmq:4.2.9-management-alpine
+    container_name: bsp_rabbitmq
+    # Shell delay sequence to wait for volume creation
+    entrypoint: ["sh", "-c", "sleep 2 && exec docker-entrypoint.sh rabbitmq-server"]
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_USER:-guest}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASSWORD:-guest}
+    ports:
+      - "${RABBITMQ_PORT:-5672}:5672"
+      - "${RABBITMQ_MANAGEMENT_PORT:-15672}:15672"
+    volumes:
+      - bsp_rabbitmq_data:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - bsp_network
+
+  celery_worker:
+    build: .
+    container_name: bsp_celery_worker
+    command: poetry run celery -A config worker -l info
+    environment:
+      - DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE}
+      - SECRET_KEY=${SECRET_KEY}
+      - CELERY_BROKER_URL=amqp://${RABBITMQ_USER}:${RABBITMQ_PASSWORD}@rabbitmq:5672//
+      - DB_HOST=db
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      db:
+        condition: service_healthy
+    networks:
+      - bsp_network
+
+  flower:
+    build: .
+    container_name: bsp_flower
+    command: >
+      poetry run celery -A config flower 
+      --broker_api="http://${RABBITMQ_USER}:${RABBITMQ_PASSWORD}@rabbitmq:15672/api/"w
+    ports:
+      - "${FLOWER_PORT:-5555}:5555"
+    environment:
+      - DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE}
+      - CELERY_BROKER_URL=amqp://${RABBITMQ_USER}:${RABBITMQ_PASSWORD}@rabbitmq:5672//
+      - FLOWER_BASIC_AUTH=${FLOWER_USER}:${FLOWER_PASSWORD}
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - bsp_network
+
 
 volumes:
   bsp_database_data:
+  bsp_rabbitmq_data:
+
+networks:
+  bsp_network:
+    driver: bridge

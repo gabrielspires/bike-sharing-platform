@@ -22,7 +22,7 @@ extensions:
     openapi:
       - sourceUrl: http://127.0.0.1:8000/schema/
         groupBy: tags
-        lastSyncDate: 2026-09-07T20:48:53.151Z
-        specHash: 41898c9a3102257eb64a63bf7cc34099
+        lastSyncDate: 2026-09-08T01:43:24.151Z
+        specHash: 1e073bd1d57e0ecc5a1dbe7515020e61
         autoCheck: true
         autoCheckInterval: 5

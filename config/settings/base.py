@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/6.1/ref/settings/
 """
 
 from pathlib import Path
+from urllib.parse import quote
 
 from decouple import config
 
@@ -182,3 +183,11 @@ SPECTACULAR_SETTINGS = {
         "name": "GPL-3.0-only",
     },
 }
+
+# Celery configuration
+
+RABBITMQ_USER = quote(config("RABBITMQ_USER"))
+RABBITMQ_PASSWORD = quote(config("RABBITMQ_PASSWORD"))
+RABBITMQ_PORT = config("RABBITMQ_PORT", default=5672)
+
+CELERY_BROKER_URL = f"amqp://{RABBITMQ_USER}:{RABBITMQ_PASSWORD}@localhost:{RABBITMQ_PORT}//"

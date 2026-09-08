@@ -3,6 +3,7 @@ from drf_spectacular.utils import extend_schema
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.renderers import JSONRenderer
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from .models import Category, Trip
 from .serializers import CategorySerializer, TripSerializer
@@ -43,13 +44,16 @@ class CategoryList(generics.ListAPIView):
 )
 class FinishTrip(generics.UpdateAPIView):
     permission_classes = [IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
 
-    queryset = Trip.objects.select_related("user", "category").all()
     serializer_class = TripSerializer
     renderer_classes = [JSONRenderer]
 
     http_method_names = ["patch"]
 
-    def perform_update(self, serializer):
+    def get_queryset(self):
+        return Trip.objects.filter(user=self.request.user).select_related("user", "category")
+
+    def perform_update(self, serializer: TripSerializer):
         trip = serializer.save(finished_at=timezone.now())
         finish_trip.delay(trip.id)

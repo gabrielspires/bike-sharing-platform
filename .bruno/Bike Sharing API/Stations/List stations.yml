@@ -1,0 +1,66 @@
+info:
+  name: List stations
+  type: http
+  seq: 1
+  tags:
+    - Stations
+
+http:
+  method: GET
+  url: "{{baseUrl}}/stations/"
+  params:
+    - name: page
+      value: ""
+      type: query
+      description: A page number within the paginated result set.
+      disabled: true
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: 200 Response
+    request:
+      url: "{{baseUrl}}/stations/"
+      method: GET
+      params:
+        - name: page
+          value: ""
+          type: query
+          description: A page number within the paginated result set.
+          disabled: true
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "count": 123,
+            "next": "http://api.example.org/accounts/?page=4",
+            "previous": "http://api.example.org/accounts/?page=2",
+            "results": [
+              {
+                "id": "",
+                "created_at": "",
+                "updated_at": "",
+                "name": "",
+                "latitude": "",
+                "longitude": "",
+                "active": false,
+                "city": ""
+              }
+            ]
+          }
+
+docs: Returns all stations.

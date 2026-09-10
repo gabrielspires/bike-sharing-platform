@@ -1,0 +1,65 @@
+info:
+  name: List all bikes
+  type: http
+  seq: 1
+  tags:
+    - Bikes
+
+http:
+  method: GET
+  url: "{{baseUrl}}/bikes/"
+  params:
+    - name: page
+      value: ""
+      type: query
+      description: A page number within the paginated result set.
+      disabled: true
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: 200 Response
+    request:
+      url: "{{baseUrl}}/bikes/"
+      method: GET
+      params:
+        - name: page
+          value: ""
+          type: query
+          description: A page number within the paginated result set.
+          disabled: true
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "count": 123,
+            "next": "http://api.example.org/accounts/?page=4",
+            "previous": "http://api.example.org/accounts/?page=2",
+            "results": [
+              {
+                "id": "",
+                "created_at": "",
+                "updated_at": "",
+                "code": "",
+                "status": "available",
+                "type": "electric",
+                "station": ""
+              }
+            ]
+          }
+
+docs: Returns all bikes.

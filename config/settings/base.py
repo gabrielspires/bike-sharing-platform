@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     "core",
     "apps.users.apps.UsersConfig",
     "apps.trips.apps.TripsConfig",
+    "apps.bikes.apps.BikesConfig",
+    "apps.stations.apps.StationsConfig",
 ]
 
 MIDDLEWARE = [

@@ -7,13 +7,12 @@ info:
 
 http:
   method: PATCH
-  url: "{{baseUrl}}/trips/{{tripID}}/finish/"
+  url: "{{baseUrl}}/trips/:id/finish/"
   params:
-    - name: page
-      value: ""
-      type: query
-      description: A page number within the paginated result set.
-      disabled: true
+    - name: id
+      value: 01a0889f-33a7-704f-a713-bfd477ef30f4
+      type: path
+      description: Trip UUID
   body:
     type: json
     data: |-
@@ -23,11 +22,6 @@ http:
   auth:
     type: bearer
     token: "{{token}}"
-
-runtime:
-  variables:
-    - name: tripID
-      value: 01a07dcf-4cef-711e-ab9b-6f62f3998a6c
 
 settings:
   encodeUrl: true
@@ -45,11 +39,6 @@ examples:
         - name: id
           value: ""
           type: path
-        - name: page
-          value: ""
-          type: query
-          description: A page number within the paginated result set.
-          disabled: true
       body:
         type: json
         data: |-
@@ -72,20 +61,13 @@ examples:
         type: json
         data: |-
           {
-            "count": 123,
-            "next": "http://api.example.org/accounts/?page=4",
-            "previous": "http://api.example.org/accounts/?page=2",
-            "results": [
-              {
-                "id": "",
-                "user": "",
-                "category": "",
-                "created_at": "",
-                "updated_at": "",
-                "finished_at": "",
-                "score": 0
-              }
-            ]
+            "id": "",
+            "user": "",
+            "category": "",
+            "created_at": "",
+            "updated_at": "",
+            "finished_at": "",
+            "score": 0
           }
 
 docs: Finishes a trip and trigger the email sending task.

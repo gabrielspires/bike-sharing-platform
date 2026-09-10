@@ -6,10 +6,10 @@ def create_default_categories(apps, schema_editor):
     Category = apps.get_model("trips", "Category")
 
     categories = [
-        {"description": "Trabalho"},
-        {"description": "Atividade física"},
-        {"description": "Lazer"},
-        {"description": "Deslocamento"},
+        {"description": "work"},
+        {"description": "exercise"},
+        {"description": "leisure"},
+        {"description": "commuting"},
     ]
 
     for c in categories:

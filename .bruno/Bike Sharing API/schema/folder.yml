@@ -1,5 +1,4 @@
 info:
   name: schema
   type: folder
-
-request: {}
+  seq: 2

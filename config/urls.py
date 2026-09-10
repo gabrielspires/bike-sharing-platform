@@ -32,4 +32,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("users/", include("apps.users.urls", namespace="users")),
     path("trips/", include("apps.trips.urls", namespace="trips")),
+    path("bikes/", include("apps.bikes.urls", namespace="bikes")),
+    path("stations/", include("apps.stations.urls", namespace="stations")),
 ]

@@ -1,0 +1,106 @@
+name: Django CI
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - '**/*.py'
+      - 'pyproject.toml'
+      - 'poetry.lock'
+      - '.github/workflows/django_test.yml'
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - '**/*.py'
+      - 'pyproject.toml'
+      - 'poetry.lock'
+      - '.github/workflows/django_test.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    # 1. Spin up Postgres and RabbitMQ services alongside the runner
+    services:
+      db:
+        image: postgres:17.10-alpine3.24
+        env:
+          POSTGRES_DB: bsp_test_db
+          POSTGRES_USER: bsp_user
+          POSTGRES_PASSWORD: bsp_password
+        ports:
+          - 5432:5432
+        # Ensure GitHub waits until Postgres is completely ready
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+      rabbitmq:
+        image: rabbitmq:4.2.9-management-alpine
+        env:
+          RABBITMQ_DEFAULT_USER: guest
+          RABBITMQ_DEFAULT_PASS: guest
+        ports:
+          - 5672:5672
+        options: >-
+          --health-cmd "rabbitmq-diagnostics -q ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    strategy:
+      max-parallel: 4
+      matrix:
+        python-version: ["3.14"]
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install Poetry
+      run: |
+        curl -sSL https://install.python-poetry.org | python3 -
+        echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+    - name: Configure Poetry cache
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pypoetry
+        key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-poetry-
+
+    - name: Install Dependencies
+      run: |
+        poetry install --no-root --no-directory
+
+    # 2. Inject environment variables pointing to the service containers
+    - name: Run Tests
+      env:
+        DJANGO_SETTINGS_MODULE: config.settings.development
+        SECRET_KEY: "ci-test-secret-key"
+        ALLOWED_HOSTS: "localhost,127.0.0.1"
+        
+        # Database configs (pointing to localhost since GitHub shares the network port)
+        DB_HOST: localhost
+        DB_NAME: bsp_test_db
+        DB_USER: bsp_user
+        DB_PASSWORD: bsp_password
+        DB_PORT: 5432
+
+        # RabbitMQ configs (pointing to localhost)
+        RABBITMQ_HOST: localhost
+        RABBITMQ_USER: guest
+        RABBITMQ_PASSWORD: guest
+        RABBITMQ_PORT: 5672
+        
+        TRIP_CONFIRMATION_SENDER: "test@example.com"
+      run: |
+        poetry run python manage.py test

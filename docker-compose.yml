@@ -39,7 +39,38 @@ services:
     networks:
       - bsp_network
 
+  bike_sharing_api:
+    image: bike-sharing-platform:latest
+    build: .
+    container_name: bsp_api
+    command: >
+      bash -c "poetry run python manage.py migrate &&
+      poetry run python manage.py runserver 0.0.0.0:8000"
+    environment:
+      - DB_HOST=db
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_PORT=${DB_PORT}
+      - DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE}
+      - SECRET_KEY=${SECRET_KEY}
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS}
+      - RABBITMQ_USER=${RABBITMQ_USER}
+      - RABBITMQ_PASSWORD=${RABBITMQ_PASSWORD}
+      - RABBITMQ_PORT=${RABBITMQ_PORT}
+      - RABBITMQ_MANAGEMENT_PORT=${RABBITMQ_MANAGEMENT_PORT}
+      - RABBITMQ_HOST=rabbitmq
+      - TRIP_CONFIRMATION_SENDER=${TRIP_CONFIRMATION_SENDER}
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - bsp_network
+
   celery_worker:
+    image: bike-sharing-platform:latest
     build: .
     container_name: bsp_celery_worker
     command: poetry run celery -A config worker -l info
@@ -60,11 +91,12 @@ services:
       - bsp_network
 
   flower:
+    image: bike-sharing-platform:latest
     build: .
     container_name: bsp_flower
     command: >
       poetry run celery -A config flower 
-      --broker_api="http://${RABBITMQ_USER}:${RABBITMQ_PASSWORD}@rabbitmq:15672/api/"w
+      --broker_api="http://${RABBITMQ_USER}:${RABBITMQ_PASSWORD}@rabbitmq:15672/api/"
     ports:
       - "${FLOWER_PORT:-5555}:5555"
     environment:

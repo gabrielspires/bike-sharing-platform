@@ -29,7 +29,7 @@ class UserList(generics.ListAPIView):
     description="Returns all trips from a user.",
     responses={200: TripSerializer(many=True)},
 )
-class UserTripList(generics.ListAPIView):
+class UserTrips(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
     authentication_classes = [JWTAuthentication]
 
@@ -37,5 +37,6 @@ class UserTripList(generics.ListAPIView):
     renderer_classes = [JSONRenderer]
 
     def get_queryset(self):
-        user_id = self.request.user
+        user_id = self.kwargs.get("pk")
+        print(user_id)
         return Trip.objects.filter(user=user_id).select_related("user")

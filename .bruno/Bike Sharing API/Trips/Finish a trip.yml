@@ -10,7 +10,7 @@ http:
   url: "{{baseUrl}}/trips/:id/finish/"
   params:
     - name: id
-      value: 01a0889f-33a7-704f-a713-bfd477ef30f4
+      value: 01a09249-21a1-710c-befe-17a7de83e322
       type: path
       description: Trip UUID
   body:

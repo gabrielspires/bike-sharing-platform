@@ -5,6 +5,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.renderers import JSONRenderer
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
+from apps.users.models import User
+
 from .models import Category, Trip
 from .serializers import CategorySerializer, TripSerializer
 from .tasks import finish_trip
@@ -17,9 +19,20 @@ from .tasks import finish_trip
     responses={200: TripSerializer(many=True)},
 )
 class TripList(generics.ListAPIView):
-    queryset = Trip.objects.select_related("user", "category").all()
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
+
     serializer_class = TripSerializer
     renderer_classes = [JSONRenderer]
+
+    def get_queryset(self):
+        user = User.objects.filter(id=self.request.user.pk).first()
+        if user and (user.is_staff or user.is_superuser):
+            # Admins can list all Trips
+            return Trip.objects.select_related("user", "category").all()
+
+        # Normal users can only see their own Trips
+        return Trip.objects.filter(user=self.request.user).select_related("user", "category")
 
 
 @extend_schema(

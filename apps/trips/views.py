@@ -1,13 +1,15 @@
 from django.utils import timezone
 from drf_spectacular.utils import extend_schema
 from rest_framework import generics
+from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
+from apps.bikes.models import Bike
 from apps.users.models import User
 
 from .models import Category, Trip
-from .serializers import CategorySerializer, TripSerializer
+from .serializers import CategorySerializer, CreateTripSerializer, TripSerializer
 from .tasks import finish_trip
 
 
@@ -48,6 +50,28 @@ class CategoryList(generics.ListAPIView):
 
 @extend_schema(
     tags=["Trips"],
+    summary="Starts a trip",
+    description="Starts a trip and change the status of the bike used.",
+    responses={200: TripSerializer},
+)
+class StartTrip(generics.CreateAPIView):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
+
+    serializer_class = CreateTripSerializer
+
+    def get_queryset(self):
+        return Trip.objects.filter(user=self.request.user).select_related("user", "category")
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+        bike = Bike.objects.filter(id=serializer.validated_data.get("bike").id).get()
+        bike.status = Bike.BikeStatus.IN_USE
+        bike.save()
+
+
+@extend_schema(
+    tags=["Trips"],
     summary="Finish a trip",
     description="Finishes a trip and trigger the email sending task.",
     responses={200: TripSerializer},
@@ -64,5 +88,22 @@ class FinishTrip(generics.UpdateAPIView):
         return Trip.objects.filter(user=self.request.user).select_related("user", "category")
 
     def perform_update(self, serializer: TripSerializer):
+        trip_id = self.kwargs.get("pk")
+        trip = Trip.objects.filter(id=trip_id).get()
+
+        if trip.finished_at:
+            raise ValidationError(
+                {
+                    "detail": "This trip has already been completed.",
+                    "error_code": "TRIP_ALREADY_FINISHED",
+                }
+            )
+
+        bike_id = trip.bike.id
+
+        bike = Bike.objects.filter(id=bike_id).get()
+        bike.status = Bike.BikeStatus.AVAILABLE
+        bike.save()
+
         trip = serializer.save(finished_at=timezone.now())
         finish_trip.delay(trip.id)

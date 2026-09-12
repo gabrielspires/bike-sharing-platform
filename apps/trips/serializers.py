@@ -23,9 +23,18 @@ class TripSerializer(serializers.ModelSerializer):
         fields = [
             "id",
             "user",
+            "bike",
             "category",
             "created_at",
             "updated_at",
             "finished_at",
             "score",
         ]
+
+
+class CreateTripSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
+
+    class Meta:
+        model = Trip
+        fields = "__all__"

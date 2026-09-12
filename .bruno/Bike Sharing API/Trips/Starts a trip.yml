@@ -1,23 +1,19 @@
 info:
-  name: Finish a trip
+  name: Starts a trip
   type: http
-  seq: 2
+  seq: 4
   tags:
     - Trips
 
 http:
-  method: PATCH
-  url: "{{baseUrl}}/trips/:id/finish/"
-  params:
-    - name: id
-      value: 01a09311-6e54-73da-90ee-7c4344c1267b
-      type: path
-      description: Trip UUID
+  method: POST
+  url: "{{baseUrl}}/trips/start/"
   body:
     type: json
     data: |-
       {
-        "score": 5
+        "category": "3",
+        "bike": "01a0889e-929e-718f-a967-4317fd772ca4"  
       }
   auth:
     type: bearer
@@ -33,12 +29,8 @@ settings:
 examples:
   - name: 200 Response
     request:
-      url: "{{baseUrl}}/trips/:id/finish/"
-      method: PATCH
-      params:
-        - name: id
-          value: ""
-          type: path
+      url: "{{baseUrl}}/trips/start/"
+      method: POST
       body:
         type: json
         data: |-
@@ -70,4 +62,4 @@ examples:
             "score": 0
           }
 
-docs: Finishes a trip and trigger the email sending task.
+docs: Starts a trip and change the status of the bike used.

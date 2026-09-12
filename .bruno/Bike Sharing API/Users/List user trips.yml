@@ -1,15 +1,15 @@
 info:
   name: List user trips
   type: http
-  seq: 4
+  seq: 2
   tags:
-    - Trips
+    - Users
 
 http:
   method: GET
-  url: "{{baseUrl}}/users/:user_id/trips/"
+  url: "{{baseUrl}}/users/:id/trips/"
   params:
-    - name: user_id
+    - name: id
       value: 01a0889d-a903-71ed-a1f6-46ab5543cf2f
       type: path
     - name: page
@@ -31,9 +31,12 @@ settings:
 examples:
   - name: 200 Response
     request:
-      url: "{{baseUrl}}/users/trips/"
+      url: "{{baseUrl}}/users/:id/trips/"
       method: GET
       params:
+        - name: id
+          value: ""
+          type: path
         - name: page
           value: ""
           type: query

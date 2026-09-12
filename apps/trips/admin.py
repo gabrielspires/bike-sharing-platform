@@ -6,6 +6,7 @@ from .models import Category, Trip
 @admin.register(Trip)
 class TripAdmin(admin.ModelAdmin):
     list_display = [
+        "id",
         "user",
         "bike",
         "category",

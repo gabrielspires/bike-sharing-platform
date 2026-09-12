@@ -19,7 +19,7 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![GPL-3.0 License][license-shield]][license-url]
+[![Build][build-shield]][build-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 <!-- PROJECT LOGO -->
@@ -345,7 +345,7 @@ To monitor the tasks sent to Celery, you can use the RabbitMQ UI and Flower on `
 - [x] Docker Compose for Postgres, broker, worker, and Flower
 - [x] Seed command and Factory Boy factories
 - [X] Run the Django API inside Compose, not only the worker
-- [ ] Rider checkout: start a trip and transition bike `available` → `in_use`
+- [X] Rider checkout: start a trip and transition bike `available` → `in_use`
 - [ ] Return-to-station: reassign bike dock and status on finish
 - [ ] Finer-grained permissions for public rider vs operator APIs
 
@@ -403,6 +403,8 @@ Gabriel Pires - [LinkedIn](https://www.linkedin.com/in/--gabriel-pires--) - <gab
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/gabrielspires/bike-sharing-platform.svg?style=for-the-badge
 [contributors-url]: https://github.com/gabrielspires/bike-sharing-platform/graphs/contributors
+[build-shield]: https://img.shields.io/github/actions/workflow/status/gabrielspires/bike-sharing-platform/django_test.yml?style=for-the-badge
+[build-url]: https://github.com/gabrielspires/bike-sharing-platform/actions/workflows/django_test.yml
 [forks-shield]: https://img.shields.io/github/forks/gabrielspires/bike-sharing-platform.svg?style=for-the-badge
 [forks-url]: https://github.com/gabrielspires/bike-sharing-platform/network/members
 [stars-shield]: https://img.shields.io/github/stars/gabrielspires/bike-sharing-platform.svg?style=for-the-badge

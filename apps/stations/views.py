@@ -1,7 +1,6 @@
 from drf_spectacular.utils import extend_schema
 from rest_framework.generics import ListAPIView
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.renderers import JSONRenderer
 
 from .models import Station
 from .serializers import StationSerializer
@@ -18,4 +17,3 @@ class StationListView(ListAPIView):
 
     queryset = Station.objects.all()
     serializer_class = StationSerializer
-    renderer_classes = [JSONRenderer]

@@ -1,7 +1,6 @@
 from drf_spectacular.utils import extend_schema
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.renderers import JSONRenderer
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from apps.trips.models import Trip
@@ -20,7 +19,6 @@ from .serializers import UserSerializer
 class UserList(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    renderer_classes = [JSONRenderer]
 
 
 @extend_schema(
@@ -34,7 +32,6 @@ class UserTrips(generics.ListAPIView):
     authentication_classes = [JWTAuthentication]
 
     serializer_class = TripSerializer
-    renderer_classes = [JSONRenderer]
 
     def get_queryset(self):
         user_id = self.kwargs.get("pk")

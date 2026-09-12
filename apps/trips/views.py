@@ -2,7 +2,6 @@ from django.utils import timezone
 from drf_spectacular.utils import extend_schema
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.renderers import JSONRenderer
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from apps.users.models import User
@@ -23,7 +22,6 @@ class TripList(generics.ListAPIView):
     authentication_classes = [JWTAuthentication]
 
     serializer_class = TripSerializer
-    renderer_classes = [JSONRenderer]
 
     def get_queryset(self):
         user = User.objects.filter(id=self.request.user.pk).first()
@@ -46,7 +44,6 @@ class CategoryList(generics.ListAPIView):
 
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    renderer_classes = [JSONRenderer]
 
 
 @extend_schema(
@@ -60,7 +57,6 @@ class FinishTrip(generics.UpdateAPIView):
     authentication_classes = [JWTAuthentication]
 
     serializer_class = TripSerializer
-    renderer_classes = [JSONRenderer]
 
     http_method_names = ["patch"]
 

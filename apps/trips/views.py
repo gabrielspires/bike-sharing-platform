@@ -1,3 +1,4 @@
+from django.db import transaction
 from django.utils import timezone
 from drf_spectacular.utils import extend_schema
 from rest_framework import generics
@@ -64,14 +65,15 @@ class StartTrip(generics.CreateAPIView):
         return Trip.objects.filter(user=self.request.user).select_related("user", "category")
 
     def perform_create(self, serializer: CreateTripSerializer):
-        bike = Bike.objects.filter(id=serializer.validated_data.get("bike").id).get()
-        start_station = bike.station
+        with transaction.atomic():
+            bike = Bike.objects.filter(id=serializer.validated_data.get("bike").id).get()
+            start_station = bike.station
 
-        bike.status = Bike.BikeStatus.IN_USE
-        bike.station = None
+            bike.status = Bike.BikeStatus.IN_USE
+            bike.station = None
 
-        serializer.save(user=self.request.user, start_station=start_station)
-        bike.save()
+            serializer.save(user=self.request.user, start_station=start_station)
+            bike.save()
 
 
 @extend_schema(
@@ -92,25 +94,26 @@ class FinishTrip(generics.UpdateAPIView):
         return Trip.objects.filter(user=self.request.user).select_related("user", "category")
 
     def perform_update(self, serializer: FinishTripSerializer):
-        trip_id = self.kwargs.get("pk")
-        trip = Trip.objects.filter(id=trip_id).get()
+        with transaction.atomic():
+            trip_id = self.kwargs.get("pk")
+            trip = Trip.objects.filter(id=trip_id).get()
 
-        if trip.finished_at:
-            raise ValidationError(
-                {
-                    "detail": "This trip has already been completed.",
-                    "error_code": "TRIP_ALREADY_FINISHED",
-                }
-            )
+            if trip.finished_at:
+                raise ValidationError(
+                    {
+                        "detail": "This trip has already been completed.",
+                        "error_code": "TRIP_ALREADY_FINISHED",
+                    }
+                )
 
-        finish_station = serializer.validated_data.get("finish_station")
+            finish_station = serializer.validated_data.get("finish_station")
 
-        bike_id = trip.bike.id
+            bike_id = trip.bike.id
 
-        bike = Bike.objects.filter(id=bike_id).get()
-        bike.status = Bike.BikeStatus.AVAILABLE
-        bike.station = finish_station
-        bike.save()
+            bike = Bike.objects.filter(id=bike_id).get()
+            bike.status = Bike.BikeStatus.AVAILABLE
+            bike.station = finish_station
+            bike.save()
 
-        trip = serializer.save(finish_station=finish_station, finished_at=timezone.now())
-        finish_trip.delay(trip.id)
+            trip = serializer.save(finish_station=finish_station, finished_at=timezone.now())
+            finish_trip.delay(trip.id)

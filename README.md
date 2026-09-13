@@ -203,6 +203,8 @@ erDiagram
     int category_id FK
     datetime finished_at
     int score
+    uuid start_station FK
+    uuid finish_station FK
     datetime created_at
     datetime updated_at
   }
@@ -346,7 +348,7 @@ To monitor the tasks sent to Celery, you can use the RabbitMQ UI and Flower on `
 - [x] Seed command and Factory Boy factories
 - [X] Run the Django API inside Compose, not only the worker
 - [X] Rider checkout: start a trip and transition bike `available` → `in_use`
-- [ ] Return-to-station: reassign bike dock and status on finish
+- [X] Return-to-station: reassign bike dock and status on finish
 - [ ] Finer-grained permissions for public rider vs operator APIs
 
 See the [open issues](https://github.com/gabrielspires/bike-sharing-platform/issues) for a full list of proposed features (and known issues).
@@ -411,8 +413,6 @@ Gabriel Pires - [LinkedIn](https://www.linkedin.com/in/--gabriel-pires--) - <gab
 [stars-url]: https://github.com/gabrielspires/bike-sharing-platform/stargazers
 [issues-shield]: https://img.shields.io/github/issues/gabrielspires/bike-sharing-platform.svg?style=for-the-badge
 [issues-url]: https://github.com/gabrielspires/bike-sharing-platform/issues
-[license-shield]: https://img.shields.io/github/license/gabrielspires/bike-sharing-platform.svg?style=for-the-badge
-[license-url]: https://github.com/gabrielspires/bike-sharing-platform/blob/main/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/--gabriel-pires--
 

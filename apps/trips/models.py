@@ -3,6 +3,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
 from apps.bikes.models import Bike
+from apps.stations.models import Station
 from common.models import BaseModel
 
 MIN_TRIP_SCORE = 1
@@ -41,4 +42,8 @@ class Trip(BaseModel):
         blank=True,
         null=True,
         validators=[MinValueValidator(MIN_TRIP_SCORE), MaxValueValidator(MAX_TRIP_SCORE)],
+    )
+    start_station = models.ForeignKey(Station, on_delete=models.DO_NOTHING, related_name="trips_started")
+    finish_station = models.ForeignKey(
+        Station, on_delete=models.DO_NOTHING, related_name="trips_ended", blank=True, null=True
     )

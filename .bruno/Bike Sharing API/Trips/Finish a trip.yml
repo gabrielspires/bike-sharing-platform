@@ -10,14 +10,14 @@ http:
   url: "{{baseUrl}}/trips/:id/finish/"
   params:
     - name: id
-      value: 01a09311-6e54-73da-90ee-7c4344c1267b
+      value: 01a09c55-03be-7102-9dd5-804be7c15a15
       type: path
-      description: Trip UUID
   body:
     type: json
     data: |-
       {
-        "score": 5
+        "score": 3,
+        "finish_station": "01a09c42-8d62-71ad-a615-ede028ae6c9a"
       }
   auth:
     type: bearer

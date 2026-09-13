@@ -20,21 +20,16 @@ class TripSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Trip
-        fields = [
-            "id",
-            "user",
-            "bike",
-            "category",
-            "created_at",
-            "updated_at",
-            "finished_at",
-            "score",
-        ]
+        fields = "__all__"
 
 
 class CreateTripSerializer(serializers.ModelSerializer):
-    user = UserSerializer(read_only=True)
-
     class Meta:
         model = Trip
-        fields = "__all__"
+        fields = ["bike", "category"]
+
+
+class FinishTripSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Trip
+        fields = ["score", "finish_station"]

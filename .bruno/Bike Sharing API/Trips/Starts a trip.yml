@@ -12,8 +12,8 @@ http:
     type: json
     data: |-
       {
-        "category": "3",
-        "bike": "01a0889e-929e-718f-a967-4317fd772ca4"  
+        "bike": "01a0889e-929e-718f-a967-4317fd772ca4",
+        "category": 1
       }
   auth:
     type: bearer

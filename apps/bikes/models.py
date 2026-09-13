@@ -19,7 +19,9 @@ class Bike(BaseModel):
     code = models.CharField(max_length=254, blank=False, null=False)
     status = models.CharField(max_length=254, choices=BikeStatus, default=BikeStatus.UNKNOWN)
     type = models.CharField(max_length=254, choices=BikeType, default=BikeType.MECHANIC)
-    station = models.ForeignKey(Station, on_delete=models.PROTECT, related_name="bikes", db_index=True)
+    station = models.ForeignKey(
+        Station, on_delete=models.PROTECT, related_name="bikes", db_index=True, blank=True, null=True
+    )
 
     def __str__(self):
         return self.code

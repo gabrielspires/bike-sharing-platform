@@ -9,7 +9,7 @@ from apps.bikes.models import Bike
 from apps.users.models import User
 
 from .models import Category, Trip
-from .serializers import CategorySerializer, CreateTripSerializer, TripSerializer
+from .serializers import CategorySerializer, CreateTripSerializer, FinishTripSerializer, TripSerializer
 from .tasks import finish_trip
 
 
@@ -63,10 +63,14 @@ class StartTrip(generics.CreateAPIView):
     def get_queryset(self):
         return Trip.objects.filter(user=self.request.user).select_related("user", "category")
 
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+    def perform_create(self, serializer: CreateTripSerializer):
         bike = Bike.objects.filter(id=serializer.validated_data.get("bike").id).get()
+        start_station = bike.station
+
         bike.status = Bike.BikeStatus.IN_USE
+        bike.station = None
+
+        serializer.save(user=self.request.user, start_station=start_station)
         bike.save()
 
 
@@ -80,14 +84,14 @@ class FinishTrip(generics.UpdateAPIView):
     permission_classes = [IsAuthenticated]
     authentication_classes = [JWTAuthentication]
 
-    serializer_class = TripSerializer
+    serializer_class = FinishTripSerializer
 
     http_method_names = ["patch"]
 
     def get_queryset(self):
         return Trip.objects.filter(user=self.request.user).select_related("user", "category")
 
-    def perform_update(self, serializer: TripSerializer):
+    def perform_update(self, serializer: FinishTripSerializer):
         trip_id = self.kwargs.get("pk")
         trip = Trip.objects.filter(id=trip_id).get()
 
@@ -99,11 +103,14 @@ class FinishTrip(generics.UpdateAPIView):
                 }
             )
 
+        finish_station = serializer.validated_data.get("finish_station")
+
         bike_id = trip.bike.id
 
         bike = Bike.objects.filter(id=bike_id).get()
         bike.status = Bike.BikeStatus.AVAILABLE
+        bike.station = finish_station
         bike.save()
 
-        trip = serializer.save(finished_at=timezone.now())
+        trip = serializer.save(finish_station=finish_station, finished_at=timezone.now())
         finish_trip.delay(trip.id)

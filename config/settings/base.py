@@ -202,3 +202,36 @@ RABBITMQ_PORT = config("RABBITMQ_PORT", default=5672)
 RABBITMQ_HOST = config("RABBITMQ_HOST", default="localhost")
 
 CELERY_BROKER_URL = f"amqp://{RABBITMQ_USER}:{RABBITMQ_PASSWORD}@{RABBITMQ_HOST}:{RABBITMQ_PORT}//"
+
+# Django LOGGING configuration
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "opensearch": {
+            "level": "INFO",
+            "class": "config.settings.log_settings.OpenSearchLogHandler",
+        },
+        "console": {
+            "level": "INFO",
+            "class": "logging.StreamHandler",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["opensearch", "console"],
+            "level": "INFO",
+            "propagate": True,
+        },
+        "opensearch": {
+            "handlers": ["console"],
+            "level": "WARNING",
+            "propagate": False,
+        },
+        "urllib3": {
+            "handlers": ["console"],
+            "level": "WARNING",
+            "propagate": False,
+        },
+    },
+}

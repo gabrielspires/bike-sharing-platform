@@ -1,7 +1,9 @@
+import logging
+
 from django.db import transaction
 from django.utils import timezone
 from drf_spectacular.utils import extend_schema
-from rest_framework import generics
+from rest_framework import generics, status
 from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
@@ -12,6 +14,8 @@ from apps.users.models import User
 from .models import Category, Trip
 from .serializers import CategorySerializer, CreateTripSerializer, FinishTripSerializer, TripSerializer
 from .tasks import finish_trip
+
+logger = logging.getLogger("django")
 
 
 @extend_schema(
@@ -75,6 +79,18 @@ class StartTrip(generics.CreateAPIView):
             serializer.save(user=self.request.user, start_station=start_station)
             bike.save()
 
+            logger.info(
+                "Trip started.",
+                extra={
+                    "extra_data": {
+                        "user_id": self.request.user,
+                        "bike_id": bike.id,
+                        "start_station": start_station,
+                        "status_code": status.HTTP_200_OK,
+                    }
+                },
+            )
+
 
 @extend_schema(
     tags=["Trips"],
@@ -116,4 +132,18 @@ class FinishTrip(generics.UpdateAPIView):
             bike.save()
 
             trip = serializer.save(finish_station=finish_station, finished_at=timezone.now())
+
             finish_trip.delay(trip.id)
+
+            logger.info(
+                "Trip finished.",
+                extra={
+                    "extra_data": {
+                        "user_id": self.request.user.pk,
+                        "bike_id": bike.id,
+                        "start_station": trip.start_station.pk,
+                        "finish_station": finish_station.pk,
+                        "status_code": status.HTTP_200_OK,
+                    }
+                },
+            )

@@ -337,6 +337,12 @@ To monitor the tasks sent to Celery, you can use the RabbitMQ UI and Flower on `
 
 ![Flower](docs/img/flower.png)
 
+## Logging and Monitoring
+
+To see application logs and create dashboards you can use OpenSearch on `127.0.0.1:5601`.
+
+![OpenSearch](docs/img/opensearch.png)
+
 <!-- ROADMAP -->
 ## Roadmap
 
@@ -349,6 +355,8 @@ To monitor the tasks sent to Celery, you can use the RabbitMQ UI and Flower on `
 - [X] Run the Django API inside Compose, not only the worker
 - [X] Rider checkout: start a trip and transition bike `available` → `in_use`
 - [X] Return-to-station: reassign bike dock and status on finish
+- [ ] Add Prometheus monitoring with django-prometheus
+- [ ] Add OpenSearch for logging
 - [ ] Finer-grained permissions for public rider vs operator APIs
 
 See the [open issues](https://github.com/gabrielspires/bike-sharing-platform/issues) for a full list of proposed features (and known issues).

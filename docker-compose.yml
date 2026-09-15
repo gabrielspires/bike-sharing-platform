@@ -39,6 +39,52 @@ services:
     networks:
       - bsp_network
 
+  opensearch:
+    image: opensearchproject/opensearch:3.8.0
+    container_name: bsp_opensearch
+    environment:
+      - cluster.name=bsp-log-cluster
+      - node.name=bsp-opensearch
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m"
+      - plugins.security.disabled=true
+      - OPENSEARCH_INITIAL_ADMIN_PASSWORD=${OPENSEARCH_INITIAL_ADMIN_PASSWORD}
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    ports:
+      - "${OPENSEARCH_PORT:-9200}:9200"
+    volumes:
+      - bsp_opensearch_data:/usr/share/opensearch/data
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:9200/').read()"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+    networks:
+      - bsp_network
+
+  opensearch-dashboards:
+    image: opensearchproject/opensearch-dashboards:3.8.0
+    container_name: bsp_dashboards
+    environment:
+      - OPENSEARCH_HOSTS=["http://opensearch:9200"]
+      - DISABLE_SECURITY_DASHBOARDS_PLUGIN=true
+      - OPENSEARCH_INITIAL_ADMIN_PASSWORD=${OPENSEARCH_INITIAL_ADMIN_PASSWORD}
+    ports:
+      - "${DASHBOARDS_PORT:-5601}:5601"
+    depends_on:
+      opensearch:
+        condition: service_healthy
+    networks:
+      - bsp_network
+
   bike_sharing_api:
     image: bike-sharing-platform:latest
     build: .
@@ -61,11 +107,16 @@ services:
       - RABBITMQ_MANAGEMENT_PORT=${RABBITMQ_MANAGEMENT_PORT}
       - RABBITMQ_HOST=rabbitmq
       - TRIP_CONFIRMATION_SENDER=${TRIP_CONFIRMATION_SENDER}
+      # New environment variable to point Django to your internal docker service container
+      - OPENSEARCH_HOST=opensearch
+      - OPENSEARCH_PORT=9200
     ports:
       - "8000:8000"
     depends_on:
       db:
         condition: service_healthy
+      opensearch:
+        condition: service_healthy # Ensure OpenSearch is ready before API launches
     networks:
       - bsp_network
 
@@ -82,10 +133,15 @@ services:
       - DB_NAME=${DB_NAME}
       - DB_USER=${DB_USER}
       - DB_PASSWORD=${DB_PASSWORD}
+      # Include OpenSearch credentials if you want your worker to push logs too
+      - OPENSEARCH_HOST=opensearch
+      - OPENSEARCH_PORT=9200
     depends_on:
       rabbitmq:
         condition: service_healthy
       db:
+        condition: service_healthy
+      opensearch:
         condition: service_healthy
     networks:
       - bsp_network
@@ -109,10 +165,10 @@ services:
     networks:
       - bsp_network
 
-
 volumes:
   bsp_database_data:
   bsp_rabbitmq_data:
+  bsp_opensearch_data: # New volume to store logs through container restarts
 
 networks:
   bsp_network:
